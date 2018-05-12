@@ -1,8 +1,8 @@
 
-from utils import clear_screen
 from card import Card
 from card_printer import ascii_version_of_card, ascii_version_of_hidden_card
 from deck import Deck
+from utils import clear_screen
 
 
 class OverUnder:
