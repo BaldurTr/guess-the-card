@@ -1,0 +1,11 @@
+{
+    "python.unitTest.unittestArgs": [
+        "-v",
+        "-s",
+        "./Tests",
+        "-p",
+        "*test*.py"
+    ],
+    "python.unitTest.unittestEnabled": true,
+    "python.unitTest.cwd": "C:\\Dev\\Python\\CardGame\\Tests",
+}

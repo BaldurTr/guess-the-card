@@ -1,7 +1,7 @@
 class Card:
 
     card_values = {
-        'Ace': 11,  # value of the ace is high until it needs to be low
+        'Ace': 1,
         '2': 2,
         '3': 3,
         '4': 4,
@@ -11,9 +11,25 @@ class Card:
         '8': 8,
         '9': 9,
         '10': 10,
-        'Jack': 10,
-        'Queen': 10,
-        'King': 10
+        'Jack': 11,
+        'Queen': 12,
+        'King': 13
+    }
+
+    card_names_by_rank = {
+        1 : 'Ace',
+        2 : '2',
+        3 : '3',
+        4 : '4',
+        5 : '5',
+        6 : '6',
+        7 : '7',
+        8 : '8',
+        9 : '9',
+        10 : '10',
+        11 : 'Jack',
+        12 : 'Queen',
+        13: 'King'
     }
 
     def __init__(self, suit, rank):
@@ -24,3 +40,16 @@ class Card:
         self.suit = suit.capitalize()
         self.rank = rank
         self.points = self.card_values[rank]
+
+    def __lt__(self, other):
+        if isinstance(other, type(self)):
+            return self.points < other.points
+        return NotImplemented
+
+    def __eq__(self, other):
+        if isinstance(other, type(self)):
+            return self.rank == other.rank
+        return NotImplemented
+
+    def __str__(self):
+        return "{0} of {1}".format(self.rank, self.suit)
