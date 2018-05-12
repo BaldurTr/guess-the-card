@@ -1,5 +1,5 @@
-import os
 
+from utils import clear_screen
 from card import Card
 from card_printer import ascii_version_of_card, ascii_version_of_hidden_card
 from deck import Deck
@@ -40,9 +40,6 @@ class OverUnder:
         self.print_score()
         print(ascii_version_of_card(facedown, faceup))
 
-    def clear_screen(self):
-        os.system('cls' if os.name == 'nt' else 'clear')
-
     def update_score(self, facedown, faceup, guess):
         if self.guesser_won(facedown, faceup, guess):
                 self.guesser_points = self.guesser_points + 1
@@ -68,13 +65,13 @@ class OverUnder:
             guess = self.get_guess()
 
             self.update_score(facedown, faceup, guess)
-            self.clear_screen()
+            clear_screen()
 
             self.card_reveal(facedown, faceup)
             
             input("Press any key for next draw...")
             
-            self.clear_screen()
+            clear_screen()
 
         self.print_winner()
 
