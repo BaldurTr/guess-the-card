@@ -3,6 +3,8 @@ from card import Card
 from card_printer import ascii_version_of_card, ascii_version_of_hidden_card
 from deck import Deck
 from utils import clear_screen
+from dealer import Dealer
+from human import Human
 
 
 class OverUnder:
@@ -13,45 +15,50 @@ class OverUnder:
     dealer gets a point. A half deck is used for the game.
     '''
 
-    def __init__(self):
-        self.dealer_points, self.guesser_points = 0, 0
+    # dealer = Dealer()
+
+    def __init__(self, player):
+        self.dealer = Dealer()
+        self.player = player
         self.deck = Deck(26)
 
 
     def guesser_won(self, facedown, faceup, guess):
         return (guess == "l" and facedown < faceup) or (guess == "h" and facedown > faceup)
 
-    def get_guess(self):
-        guess = input("Is the face down card higher(h) or lower(l)?: ")
-
-        while guess not in ["h", "l"]:
-            guess = input("Please select either 'h' for 'higher' or 'l' for 'lower': ")
-        
-        return guess
-
     def print_score(self):
-        print("Guesser: {0} points, Dealer {1} points".format(self.guesser_points, self.dealer_points))
+        print("Guesser: {0} points, Dealer {1} points".format(self.player.points, self.dealer.points))
 
     def pre_guess_prompt(self, facedown, faceup):
-        self.print_score()
-        print(ascii_version_of_hidden_card(facedown, faceup))
+        if not self.player.isRobot:
+            self.print_score()
+            print(ascii_version_of_hidden_card(facedown, faceup))
 
     def card_reveal(self, facedown, faceup):
-        self.print_score()
-        print(ascii_version_of_card(facedown, faceup))
+        if not self.player.isRobot:
+            self.print_score()
+            print(ascii_version_of_card(facedown, faceup))
+            input("Press any key for next draw...")
+            clear_screen()
 
     def update_score(self, facedown, faceup, guess):
         if self.guesser_won(facedown, faceup, guess):
-                self.guesser_points = self.guesser_points + 1
+                self.player.add_point()
         else:
-            self.dealer_points = self.dealer_points + 1
+            self.dealer.add_point()
+        if not self.player.isRobot:
+            clear_screen()
     
+    def find_winner(self):
+        return self.dealer if self.player < self.dealer else self.player
+
     def print_winner(self):
         self.print_score()
-        winner = "Guesser" if self.guesser_points > self.dealer_points else "Dealer"
-        points = max(self.guesser_points, self.dealer_points)
+        # winner = "Guesser" if self.player.points > self.dealer.points else "Dealer"
+        # points = max(self.player.points, self.dealer.points)
+        winner = self.find_winner()
 
-        print("Winner is {0} with {1} points. Congratulations!".format(winner, points))
+        print("Winner is {0} with {1} points. Congratulations!".format(winner.name, winner.points))
 
     def play(self):
 
@@ -62,19 +69,16 @@ class OverUnder:
 
             self.pre_guess_prompt(facedown, faceup)
 
-            guess = self.get_guess()
+            guess = self.player.get_guess()
 
             self.update_score(facedown, faceup, guess)
-            clear_screen()
 
             self.card_reveal(facedown, faceup)
-            
-            input("Press any key for next draw...")
-            
-            clear_screen()
 
         self.print_winner()
 
+        return 
+
 if __name__ == "__main__":
-    game = OverUnder()
+    game = OverUnder(Human())
     game.play()
