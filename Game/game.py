@@ -21,6 +21,7 @@ class OverUnder:
         self.dealer = Dealer()
         self.player = player
         self.deck = Deck(26)
+        self.game_counter = 0
 
 
     def guesser_won(self, facedown, faceup, guess):
@@ -50,15 +51,18 @@ class OverUnder:
             clear_screen()
     
     def find_winner(self):
+        self.game_counter = self.game_counter + 1
         return self.dealer if self.player < self.dealer else self.player
 
-    def print_winner(self):
-        self.print_score()
-        # winner = "Guesser" if self.player.points > self.dealer.points else "Dealer"
-        # points = max(self.player.points, self.dealer.points)
-        winner = self.find_winner()
+    def print_winner(self, winner):
+        if not winner.isRobot:
+            self.print_score()
+            print("Winner is {0} with {1} points. Congratulations!".format(winner.name, winner.points))
 
-        print("Winner is {0} with {1} points. Congratulations!".format(winner.name, winner.points))
+    def reset(self):
+        self.deck = Deck(26)
+        self.dealer.points = 0
+        self.player.points = 0
 
     def play(self):
 
@@ -75,9 +79,11 @@ class OverUnder:
 
             self.card_reveal(facedown, faceup)
 
-        self.print_winner()
+        winner = self.find_winner()
 
-        return 
+        self.print_winner(winner)
+
+        return winner.name
 
 if __name__ == "__main__":
     game = OverUnder(Human())

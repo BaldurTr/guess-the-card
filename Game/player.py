@@ -2,6 +2,7 @@ class Player:
 
     points = 0
     answers = ['l', 'h']
+    name = "AS400"
 
     def __init__(self, name="AS400", isRobot=True):
         self.name = name
