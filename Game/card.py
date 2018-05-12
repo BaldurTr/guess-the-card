@@ -1,36 +1,9 @@
 class Card:
 
-    card_values = {
-        'Ace': 1,
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        '5': 5,
-        '6': 6,
-        '7': 7,
-        '8': 8,
-        '9': 9,
-        '10': 10,
-        'Jack': 11,
-        'Queen': 12,
-        'King': 13
-    }
+    card_values = { 'Ace': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, 
+        '8': 8, '9': 9, '10': 10, 'Jack': 11, 'Queen': 12, 'King': 13 }
 
-    card_names_by_rank = {
-        1 : 'Ace',
-        2 : '2',
-        3 : '3',
-        4 : '4',
-        5 : '5',
-        6 : '6',
-        7 : '7',
-        8 : '8',
-        9 : '9',
-        10 : '10',
-        11 : 'Jack',
-        12 : 'Queen',
-        13: 'King'
-    }
+    card_names_by_rank = { v: k for k, v in card_values.items() }
 
     def __init__(self, suit, rank):
         """
