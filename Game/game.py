@@ -30,10 +30,10 @@ class OverUnder:
     def print_score(self):
         print("Guesser: {0} points, Dealer {1} points".format(self.player.points, self.dealer.points))
 
-    def pre_guess_prompt(self, facedown, faceup):
+    def pre_guess_prompt(self, faceup):
         if not self.player.isRobot:
             self.print_score()
-            print(ascii_version_of_hidden_card(facedown, faceup))
+            print(ascii_version_of_hidden_card(faceup))
 
     def card_reveal(self, facedown, faceup):
         if not self.player.isRobot:
@@ -68,12 +68,14 @@ class OverUnder:
 
         while not self.deck.isEmpty():
 
-            facedown = self.deck.deal_card()
+            # facedown = self.deck.deal_card()
             faceup = self.deck.deal_card()
 
-            self.pre_guess_prompt(facedown, faceup)
+            self.pre_guess_prompt(faceup)
 
-            guess = self.player.get_guess()
+            guess = self.player.get_guess(faceup)
+
+            facedown = self.deck.deal_favorable_dealer_card(faceup, guess)
 
             self.update_score(facedown, faceup, guess)
 

@@ -19,6 +19,21 @@ class Card:
             return self.points < other.points
         return NotImplemented
 
+    def __le__(self, other):
+        if isinstance(other, type(self)):
+            return self.points <= other.points
+        return NotImplemented
+
+    def __gt__(self, other):
+        if isinstance(other, type(self)):
+            return self.points > other.points
+        return NotImplemented
+
+    def __ge__(self, other):
+        if isinstance(other, type(self)):
+            return self.points >= other.points
+        return NotImplemented
+
     def __eq__(self, other):
         if isinstance(other, type(self)):
             return self.rank == other.rank

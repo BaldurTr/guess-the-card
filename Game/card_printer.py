@@ -65,4 +65,4 @@ def ascii_version_of_hidden_card(*cards):
     :return: A string, the nice ascii version of cards
     """
 
-    return join_lines((HIDDEN_CARD, ascii_version_of_card(*cards[1:])))
+    return join_lines((HIDDEN_CARD, ascii_version_of_card(*cards)))
