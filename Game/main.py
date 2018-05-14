@@ -35,7 +35,7 @@ else:
     game = OverUnder(Robot())
     game.play()
     winner_list = []
-    total_rounds = 1
+    total_rounds = 10000
     for _ in range(total_rounds):
         winner_list.append(game.play())
         game.reset()
