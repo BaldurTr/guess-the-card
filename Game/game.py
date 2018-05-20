@@ -17,7 +17,7 @@ class OverUnder:
 
     # dealer = Dealer()
 
-    def __init__(self, player):
+    def __init__(self, player=None):
         self.dealer = Dealer()
         self.player = player
         self.deck = Deck(26)
