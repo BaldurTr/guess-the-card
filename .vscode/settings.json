@@ -8,4 +8,5 @@
     ],
     "python.unitTest.unittestEnabled": true,
     "python.unitTest.cwd": "C:\\Dev\\Python\\CardGame\\Tests",
+    "python.pythonPath": "/usr/local/bin/python3",
 }
