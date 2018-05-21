@@ -37,15 +37,15 @@ class Deck:
 
     def deal_favorable_dealer_card(self, card, guess):
         if not self.isEmpty():
-            if should_cheat():
-                print("I chose to cheat!")
+            if should_cheat(card.points):
+                #print("I chose to cheat!")
                 comparer = lambda x: x >= card if guess == 'l' else lambda x: x <= card
                 favorable_cards = list(filter(comparer, self.deck))
                 if favorable_cards:
                     cheat_card = choice(favorable_cards)
                     return self.deal_card(cheat_card)
-                print("I failed to cheat!")
-            print("I chose not to cheat!")
+                #print("I failed to cheat!")
+            #print("I chose not to cheat!")
             return self.deal_card()
 
     def choose_from_cheat_card_list(self, selectedCard, cards):

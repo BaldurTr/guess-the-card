@@ -39,15 +39,15 @@ class OverUnder:
             self.print_score()
             print(ascii_version_of_card(facedown, faceup))
             input("Press enter for next draw...")
-            #clear_screen()
+            clear_screen()
 
     def update_score(self, facedown, faceup, guess):
         if self.guesser_won(facedown, faceup, guess):
                 self.player.add_point()
         else:
             self.dealer.add_point()
-        #if not self.player.isRobot:
-            #clear_screen()
+        if not self.player.isRobot:
+            clear_screen()
     
     def find_winner(self):
         self.game_counter = self.game_counter + 1

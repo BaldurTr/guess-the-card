@@ -10,4 +10,5 @@
     "python.unitTest.unittestEnabled": true,
     "python.unitTest.nosetestsEnabled": false,
     "python.pythonPath": "C:\\Users\\Baldur\\AppData\\Local\\Programs\\Python\\Python36-32\\python.exe",
+    "editor.detectIndentation": false,
 }
