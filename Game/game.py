@@ -6,6 +6,7 @@ from utils import clear_screen
 from dealer import Dealer
 from human import Human
 
+GAME_DECK_SIZE = 26
 
 class OverUnder:
     ''' The game Over-Under is a simple guessing game where in a dealer
@@ -15,14 +16,12 @@ class OverUnder:
     dealer gets a point. A half deck is used for the game.
     '''
 
-    # dealer = Dealer()
-
     def __init__(self, player=None):
         self.dealer = Dealer()
         self.player = player
-        self.deck = Deck(26)
+        self.deck = Deck()
         self.game_counter = 0
-
+        self.remaining_cards = GAME_DECK_SIZE
 
     def guesser_won(self, facedown, faceup, guess):
         return (guess == "l" and facedown < faceup) or (guess == "h" and facedown > faceup)
@@ -60,29 +59,25 @@ class OverUnder:
             print("Winner is {0} with {1} points. Congratulations!".format(winner.name, winner.points))
 
     def reset(self):
-        self.deck = Deck(26)
+        self.deck = Deck()
         self.dealer.points = 0
         self.player.points = 0
+        self.remaining_cards = GAME_DECK_SIZE
+
+    def discard_used_cards(self):
+        self.remaining_cards = self.remaining_cards - 2
 
     def play(self):
-
-        while not self.deck.isEmpty():
-
-            # facedown = self.deck.deal_card()
+        while self.remaining_cards > 0:
             faceup = self.deck.deal_card()
-
             self.pre_guess_prompt(faceup)
-
             guess = self.player.get_guess(faceup)
-
             facedown = self.deck.deal_favorable_dealer_card(faceup, guess)
-
             self.update_score(facedown, faceup, guess)
-
             self.card_reveal(facedown, faceup)
+            self.discard_used_cards()
 
         winner = self.find_winner()
-
         self.print_winner(winner)
 
         return winner.name

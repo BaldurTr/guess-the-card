@@ -6,17 +6,17 @@ from totally_nothing_suspicious import should_cheat
 
 class Deck:
 
-    def __init__(self, number_cards=52):
+    def __init__(self):
         self.suits = { 1 : "Hearts", 2 : "Diamonds", 3 : "Spades", 4 : "Clubs" }
-        self.number_of_cards = 26
-
         full_deck = [ Card(self.suits[i], Card.card_names_by_rank[j]) for i in range(1,5) for j in range(1,14) ]
         shuffle(full_deck)
+        self.number_of_cards = 26
 
         self.deck = full_deck
     
     def deal_card(self, card:Card=None):
-        if self.isEmpty(): return
+        if self.isEmpty(): 
+            return
 
         if card:
             returnCard = card
@@ -46,6 +46,5 @@ class Deck:
             cardsDict[k].Append(v)
         return cardsDict
         
-
     def isEmpty(self):
         return self.number_of_cards == 0

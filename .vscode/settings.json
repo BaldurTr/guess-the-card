@@ -2,11 +2,12 @@
     "python.unitTest.unittestArgs": [
         "-v",
         "-s",
-        "./Tests",
+        "../Game",
         "-p",
         "*test*.py"
     ],
+    "python.unitTest.pyTestEnabled": false,
     "python.unitTest.unittestEnabled": true,
-    "python.unitTest.cwd": "C:\\Dev\\Python\\CardGame\\Tests",
-    "python.pythonPath": "/usr/local/bin/python3",
+    "python.unitTest.nosetestsEnabled": false,
+    "python.pythonPath": "C:\\Users\\Baldur\\AppData\\Local\\Programs\\Python\\Python36-32\\python.exe",
 }

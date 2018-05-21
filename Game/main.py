@@ -3,7 +3,6 @@ from human import Human
 from robot import Robot
 from utils import get_percentage, clear_screen
 
-
 print("Welcome to the game Over-Under\n")
 print("""\
 Dealer deals two cards, one face up and the other facedown from
@@ -21,7 +20,8 @@ Modes:
         2. Sit idle while 2 robots play the game 10000 times,
            no output whill be shown bu you will receive
            stats at the end for how well the dealer did.
-           Super fun...""")
+           Super fun...
+""")
 
 user_choice = input("Select option 1 or 2: ")
 while user_choice not in ['1', '2']:
