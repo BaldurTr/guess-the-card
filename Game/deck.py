@@ -5,6 +5,11 @@ from random import random
 from totally_nothing_suspicious import should_cheat
 
 class Deck:
+    """Holds a single deck of cards and contains several
+    methods to use on the deck such as deal_card and the
+    slightly better deal_favorable_dealer_card which comes
+    in handy every so often.
+    """
 
     def __init__(self):
         self.suits = { 1 : "Hearts", 2 : "Diamonds", 3 : "Spades", 4 : "Clubs" }
@@ -33,11 +38,14 @@ class Deck:
     def deal_favorable_dealer_card(self, card, guess):
         if not self.isEmpty():
             if should_cheat():
+                print("I chose to cheat!")
                 comparer = lambda x: x >= card if guess == 'l' else lambda x: x <= card
                 favorable_cards = list(filter(comparer, self.deck))
                 if favorable_cards:
                     cheat_card = choice(favorable_cards)
                     return self.deal_card(cheat_card)
+                print("I failed to cheat!")
+            print("I chose not to cheat!")
             return self.deal_card()
 
     def choose_from_cheat_card_list(self, selectedCard, cards):
