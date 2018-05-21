@@ -13,8 +13,8 @@ class ProbabilityTest(unittest.TestCase):
             game.reset()
         
         dealer_wins = winner_list.count("Dealer")
-
         dealer_win_percentage = (dealer_wins/total_tries)
+        
         self.assertTrue(dealer_win_percentage > 0.51)
         self.assertTrue(dealer_win_percentage < 0.60)
 

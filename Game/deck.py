@@ -2,7 +2,7 @@ from card import Card
 from random import shuffle
 from random import choice
 from random import random
-from totally_notthing_suspicious import should_cheat
+from totally_nothing_suspicious import should_cheat
 
 class Deck:
 
